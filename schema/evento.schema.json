@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.test/schemas/evento.schema.json",
+  "title": "Evento extraído de um cartaz sintético",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["titulo", "data_inicio", "hora_inicio", "data_fim", "hora_fim", "local"],
+  "properties": {
+    "titulo": {"type": ["string", "null"]},
+    "data_inicio": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "hora_inicio": {"type": ["string", "null"], "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"},
+    "data_fim": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "hora_fim": {"type": ["string", "null"], "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"},
+    "local": {"type": ["string", "null"]},
+    "descricao": {"type": ["string", "null"]},
+    "organizacao": {"type": ["string", "null"]},
+    "link_inscricao": {"type": ["string", "null"]}
+  }
+}
+

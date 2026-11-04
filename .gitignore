@@ -1,0 +1,12 @@
+.env
+.n8n/
+node_modules/
+__pycache__/
+*.pyc
+avaliacao/resultados/*.json
+avaliacao/resultados/*.md
+!avaliacao/resultados/.gitkeep
+
+
+# Planos e specs de trabalho (histórico interno, fora do repositório público)
+docs/superpowers/

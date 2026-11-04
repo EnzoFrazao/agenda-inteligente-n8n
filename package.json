@@ -1,0 +1,17 @@
+{
+  "name": "agenda-inteligente-n8n",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:choque": "node scripts/testar-choque.js",
+    "check:workflow": "node scripts/conferir-workflow.js",
+    "check:secrets": "node scripts/conferir-segredos.js",
+    "check": "npm run test && npm run test:choque && npm run check:workflow && npm run check:secrets"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
+
