@@ -1,6 +1,6 @@
 # Como funciona
 
-O workflow tem 22 nós. Ele é gerado por `scripts/gerar-workflow.mjs`; o contrato está em [`specs/capabilities/core.md`](../specs/capabilities/core.md).
+O workflow ([`n8n/agenda-inteligente.json`](../n8n/agenda-inteligente.json)) tem 22 nós. Esta página descreve o caminho que um e-mail percorre; a visão geral e os resultados estão no [README](../README.md).
 
 ## Entrada e deduplicação
 

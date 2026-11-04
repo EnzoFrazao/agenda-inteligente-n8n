@@ -90,7 +90,7 @@ O Gmail Trigger não recebe upload manual pelo canvas. Para cada caso:
 1. Publique o workflow e mantenha Docker/n8n abertos.
 2. Envie **um novo e-mail** para a caixa dedicada com exatamente um PNG de `avaliacao/cartazes/`, na ordem `01-completo`, `02-incompleto`, `03-choque-injecao`.
 3. Aguarde até um minuto pelo trigger.
-4. Confira a linha na planilha, o evento no Calendar e a resposta na mesma conversa. Os resultados esperados estão em [`docs/checklist-e2e.md`](../docs/checklist-e2e.md).
+4. Confira a linha na planilha, o evento no Calendar e a resposta na mesma conversa. Os resultados esperados estão na tabela de resultados do [README](../README.md#resultado-das-execuções-reais-04112026).
 
 Para exercitar o aviso de falha sem custo, envie um anexo `.png` corrompido (um arquivo de texto renomeado).
 

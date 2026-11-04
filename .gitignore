@@ -6,7 +6,3 @@ __pycache__/
 avaliacao/resultados/*.json
 avaliacao/resultados/*.md
 !avaliacao/resultados/.gitkeep
-
-
-# Planos e specs de trabalho (histórico interno, fora do repositório público)
-docs/superpowers/
