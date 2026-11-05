@@ -4,6 +4,41 @@ Automação em n8n que lê o cartaz de um evento recebido por e-mail, extrai os 
 
 Projeto de portfólio, feito com **dados fictícios** e rodando **localmente, sem custo**. Não é um produto em produção.
 
+<div align="center">
+
+[**Vídeo narrado, 2 min 25 s**](#vídeo) · [O que acontece com cada e-mail](#o-que-acontece-com-cada-e-mail) · [Como foi testado](#como-foi-testado) · [Como rodar](#como-rodar)
+
+<a href="#vídeo"><img src="docs/video/previa.gif" alt="Prévia do vídeo: a IA lê um cartaz colorido e inclinado, devolve título, início, fim e local, e o evento entra na Google Agenda" width="760"></a>
+
+<sub>Prévia de 10 s, sem som (o primeiro caso do vídeo). O vídeo completo tem 2 min 25 s, é narrado e legendado em português.</sub>
+
+</div>
+
+## Vídeo
+
+<div align="center">
+
+[**Baixar o vídeo (MP4, 2 min 25 s, 10 MB, com som)**](docs/video/agenda-inteligente-16x9.mp4) · [Narração e legendas](docs/video/legendas.md)
+
+</div>
+
+O vídeo é **narrado em português**, com uma **voz sintética** (gerada a partir de texto; não é uma gravação de voz humana). As legendas, em português, estão gravadas na imagem e também em [`docs/video/legendas.md`](docs/video/legendas.md), junto com o texto da narração. Os dados mostrados (cartazes, eventos e organizações) foram criados para o desenvolvimento do projeto.
+
+| Tempo | Capítulo | O que aparece |
+|---:|---|---|
+| 0:00 | O problema e a solução | Cartazes chegando por e-mail e o trabalho de copiar data, hora e local; uma conta de exemplo (cinco minutos por cartaz, em cem cartazes, mais de oito horas) |
+| 0:22 | Como foi criada | As quatro etapas no n8n: o cartaz chega, a IA lê, regras em código conferem, e o e-mail termina em `aprovado`, `conflito`, `incompleto` ou `erro` |
+| 1:05 | Na prática: caso 1 | Um cartaz difícil de ler (fundo colorido, texto inclinado): a IA devolve os campos, as regras confirmam, o evento entra na Google Agenda, a planilha registra `aprovado` e a resposta volta na mesma conversa |
+| 1:29 | Quando não sai como o esperado | Os outros casos: falta o horário de término, choque de horário, texto escondido no cartaz (prompt injection) e anexo corrompido |
+| 2:07 | Impacto previsto | A mesma conta de exemplo, e o que sobra para a pessoa decidir: o que ficou a confirmar |
+| 2:17 | Fecho | A indicação do portfólio e do GitHub, onde está o projeto completo |
+
+**Sobre os números do vídeo.** A conta de cinco minutos por cartaz e cem cartazes é um exemplo para ilustrar o problema; **não foi medida** em nenhuma situação real. Os resultados dos casos (`aprovado`, `incompleto`, `conflito`, `erro`) são os da [seção de testes](#resultado-das-execuções-reais-04112026).
+
+**Como o vídeo foi feito.** As cenas são páginas HTML renderizadas quadro a quadro e codificadas com `ffmpeg`. As telas do n8n, do Gmail, do Google Agenda e da planilha são capturas da conta de teste, com o que identifica a conta coberto: as do caso 1 são de uma execução nova, de 05/11, e as dos demais casos vêm das execuções de 04/11. A resposta mostrada no caso de horário de término é a que o fluxo enviou de fato. A narração usa a voz `pt-BR-ThalitaMultilingualNeural`, gerada com o `edge-tts`; palavras em inglês têm a pronúncia escrita à parte para a voz ler direito, e a legenda mantém a grafia correta. O vídeo e este README foram produzidos com a ajuda do Claude (Claude Code); os scripts que geraram o vídeo não fazem parte do repositório.
+
+> **Sobre o arquivo.** O GitHub não toca um MP4 que está só na pasta do repositório: a página do arquivo oferece apenas o download. A prévia em GIF, no topo, leva a esta seção.
+
 ## Problema
 
 Ler cartazes de eventos, copiar data, hora e local e conferir a agenda à mão é trabalho repetitivo e sujeito a erro. Aqui, quem envia o cartaz por e-mail recebe de volta uma resposta dizendo se o evento foi criado, se faltou alguma informação ou se já existe outro compromisso naquele horário.
@@ -78,12 +113,14 @@ Os três cartazes e um anexo corrompido passaram pelo workflow publicado. Os dad
 |---|---|---|---|---|---|
 | 01 completo | `aprovado` | `aprovado` | linha `aprovado` | evento criado | confirmação na mesma conversa |
 | 02 incompleto (sem `hora_fim`) | `incompleto` | `incompleto` | linha `incompleto` | nada | pedido de novo e-mail, "faltou informar horário de término" |
-| 03 choque + instrução escondida | `conflito` | `conflito` | linha `conflito` | `[A CONFIRMAR] Roda Aurora` | aviso do choque com "Encontro Horizonte"; instrução escondida ignorada |
+| 03 choque + instrução escondida | `conflito` | `conflito` | linha `conflito` | `[A CONFIRMAR] RODA AURORA` | aviso do choque com o evento Encontro Horizonte; instrução escondida ignorada |
 | Anexo `.png` corrompido | `erro` | `erro` | linha `erro` | nada | "Nenhum evento foi criado. Reenvie o e-mail…" |
 
 Nos três cartazes, **8 de 9 campos coincidiram com o gabarito**. A única divergência, nos três, é a caixa do título: os cartazes imprimem o título em maiúsculas (`ENCONTRO HORIZONTE`) e o modelo o reproduziu fielmente, enquanto o gabarito usa `Encontro Horizonte`. A comparação é exata, por isso a diferença aparece no relatório em vez de ser escondida.
 
 Três casos mostram que os caminhos funcionam; **não** medem acurácia geral. O reprocessamento real do mesmo e-mail e uma falha real do Calendar só foram verificados por testes automatizados.
+
+**O caso 1 do vídeo não é esta execução.** Para a gravação, o primeiro caso usa uma versão mais difícil do mesmo cartaz (fundo colorido, texto inclinado, data e hora soltas na imagem), enviada em 05/11/2026. Essa execução aparece só no vídeo: o cartaz e o registro dela não estão em `avaliacao/`, e os números e as tabelas desta seção continuam sendo os de 04/11.
 
 ## Como rodar
 
@@ -136,6 +173,7 @@ Trocar a planilha por um banco com chave única, adicionar autenticação, obser
 
 ## Documentação
 
+- [Vídeo](#vídeo) e [sua transcrição](docs/video/legendas.md)
 - [Como o workflow funciona](docs/como-funciona.md)
 - [Configuração do n8n e das credenciais](n8n/credenciais-google.md)
 - [Prompt de extração](prompts/extracao.md) e [schema do evento](schema/evento.schema.json)
