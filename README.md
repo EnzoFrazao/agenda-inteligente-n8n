@@ -16,9 +16,11 @@ Projeto de portfólio, feito com **dados fictícios** e rodando **localmente, se
 
 ## Vídeo
 
+https://github.com/user-attachments/assets/6cf5f663-b4cf-46da-a44c-41f2cfca617a
+
 <div align="center">
 
-[**Baixar o vídeo (MP4, 2 min 25 s, 10 MB, com som)**](docs/video/agenda-inteligente-16x9.mp4) · [Narração e legendas](docs/video/legendas.md)
+[**Baixar o vídeo (MP4, 2 min 25 s, 8,3 MB, com som)**](docs/video/agenda-inteligente-16x9.mp4) · [Narração e legendas](docs/video/legendas.md)
 
 </div>
 
@@ -37,7 +39,7 @@ O vídeo é **narrado em português**, com uma **voz sintética** (gerada a part
 
 **Como o vídeo foi feito.** As cenas são páginas HTML renderizadas quadro a quadro e codificadas com `ffmpeg`. As telas do n8n, do Gmail, do Google Agenda e da planilha são capturas da conta de teste, com o que identifica a conta coberto: as do caso 1 são de uma execução nova, de 05/11, e as dos demais casos vêm das execuções de 04/11. A resposta mostrada no caso de horário de término é a que o fluxo enviou de fato. A narração usa a voz `pt-BR-ThalitaMultilingualNeural`, gerada com o `edge-tts`; palavras em inglês têm a pronúncia escrita à parte para a voz ler direito, e a legenda mantém a grafia correta. O vídeo e este README foram produzidos com a ajuda do Claude (Claude Code); os scripts que geraram o vídeo não fazem parte do repositório.
 
-> **Sobre o arquivo.** O GitHub não toca um MP4 que está só na pasta do repositório: a página do arquivo oferece apenas o download. A prévia em GIF, no topo, leva a esta seção.
+> **Sobre o player.** O GitHub não toca um MP4 que está só na pasta do repositório (a marcação `<video>` é removida do README e a página do arquivo só oferece o download). O player acima usa o mesmo arquivo, `docs/video/agenda-inteligente-16x9.mp4`, enviado pelo editor do GitHub; a prévia em GIF, no topo, leva até ele.
 
 ## Problema
 
